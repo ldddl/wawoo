@@ -1,0 +1,12 @@
+.button-font-hover:hover {
+  color: #fff;
+}
+
+.icon_style {
+  width: 24px;
+  height: 24px;
+  @include sm {
+    width: 50px;
+    height: 50px;
+  }
+}
