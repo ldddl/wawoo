@@ -15,7 +15,7 @@ export default {
   mounted() {
     const api = 'https://vue3-course-api.hexschool.io/'
     const path = 'v2/api/{api_path}/products/all'
-    this.$http.get(`${api}v2/api/ldddl/products/all`)
+    this.$http.get(`${api}${path}`)
     .then((res) => {
       console.log(res)
       this.isLoading = false
