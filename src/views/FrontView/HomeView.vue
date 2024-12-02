@@ -1,10 +1,10 @@
 <script>
-import homeBanner from '../components/homeBanner.vue'
-import homeProductsView from '../components/homeProductsView.vue'
-import homeCity from '../components/homeCity.vue'
-import homeCoupon from '../components/homeCoupon.vue'
-import homeBrandCore from '../components/homeBrandCore.vue'
-import homeSubscribe from '../components/homeSubscribe.vue'
+import homeBanner from '../../components/homeBanner.vue'
+import homeProductsView from '../../components/homeProductsView.vue'
+import homeCity from '../../components/homeCity.vue'
+import homeCoupon from '../../components/homeCoupon.vue'
+import homeBrandCore from '../../components/homeBrandCore.vue'
+import homeSubscribe from '../../components/homeSubscribe.vue'
 export default {
   components: {
     homeBanner,
