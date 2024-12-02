@@ -13,11 +13,11 @@
       <div class="left-content mb-4">
         <ul class="list-unstyled m-0 text-center">
           <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">全部商品</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">上半身</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">下半身</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">鞋</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">飾品</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">配件</a></li>
+          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">別墅</a></li>
+          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">小木屋</a></li>
+          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">透天屋</a></li>
+          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">高級住宅</a></li>
+          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">電梯大樓</a></li>
         </ul>
       </div>
       <div class="container right-content p-0">

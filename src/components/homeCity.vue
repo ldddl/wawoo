@@ -2,31 +2,50 @@
   <div class="container">
     <div class="row text-center pin-top" :class="{ 'active': selectedArea === 'north' }">
       <a class="
+      city-style-border
       btn btn-primary button-font-hover p-2 
       col-6 col-md-3 
       d-flex justify-content-center align-items-center 
-      border-0 border-end fw-bold fs-4"
+      fw-bold fs-4"
       data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('north')">
         <div class="p-2">
           <p>北部</p>
         </div>
       </a>
-      <a class="pin-top btn btn-primary button-font-hover p-2 col-6 col-md-3 d-flex justify-content-center align-items-center border-0 border-end fw-bold fs-4"
+      <a class="
+      city-style-border 
+      pin-top 
+      btn btn-primary button-font-hover p-2 
+      col-6 col-md-3 
+      d-flex justify-content-center align-items-center 
+      fw-bold fs-4"
       data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('middle')">
         <div class="p-2">
           <p>中部</p>
         </div>
       </a>
-      <a class="pin-top btn btn-primary button-font-hover p-2 col-6 col-md-3 d-flex justify-content-center align-items-center border-0 border-end fw-bold fs-4"
+      <a class="
+      city-style-border
+      pin-top 
+      btn btn-primary button-font-hover p-2 
+      col-6 col-md-3 
+      d-flex justify-content-center align-items-center 
+      fw-bold fs-4"
       data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('south')">
         <div class="p-2">
           <p>南部</p>
         </div>
       </a>
-      <a class="pin-top btn btn-primary button-font-hover p-2 col-6 col-md-3 d-flex justify-content-center align-items-center border-0 border-end fw-bold fs-4"
+      <a class="
+      city-style-border
+      pin-top 
+      btn btn-primary button-font-hover 
+      p-2 col-6 col-md-3 
+      d-flex justify-content-center align-items-center 
+      fw-bold fs-4"
       data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('east')">
         <div class="p-2">
@@ -77,3 +96,8 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+  .city-style-border {
+    border: 1px solid #fff;
+  }
+</style>

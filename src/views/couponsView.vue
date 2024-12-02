@@ -20,8 +20,11 @@
         @mouseup="stopScratching"
         @mouseleave="stopScratching"
       ></canvas>
-      <div v-if="showCoupon" id="coupon-result" class="text-primary fw-bold border border-2 border-primary">
-        恭喜您獲得 神秘小禮物乙份
+      <div v-if="showCoupon" id="coupon-result" 
+      class="text-primary fw-bold border border-2 border-primary
+      d-flex flex-column align-items-center justify-content-center">
+        <p>恭喜您獲得 神秘小禮物乙份</p>
+        <img src="../assets/icons/gifts.svg" alt="gifts" class="gift-style">
       </div>
     </div>
   </div>
@@ -91,7 +94,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .scratch-card-container {
   position: relative;
   width: 300px;
@@ -113,4 +116,13 @@ onMounted(() => {
   font-size: 20px;
   z-index: 1;
 }
+
+.gift-style {
+  width: 30px;
+  height: 30px;
+    @include sm {
+      width: 60px;
+      height: 60px;
+    }
+  }
 </style>

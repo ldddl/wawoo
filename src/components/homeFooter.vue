@@ -2,7 +2,7 @@
   <div class="container p-4 bg-secondary">
     <div class="row text-center">
       <div class="col-sm-4 mb-4 mb-sm-0">
-        <h2 class="mb-4 text-primary fw-bold">Wawoo</h2>
+        <h2 class="mb-4 text-primary fw-bold">瓦屋 Wawoo</h2>
         <p>這是關於每個人夢想中的「瓦屋」，無論大小、無論何處，都是心靈的避風港。</p>
       </div>
       <div class="col-sm-4 mb-4 mb-sm-0">

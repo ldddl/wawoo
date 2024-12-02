@@ -14,16 +14,16 @@
             <RouterLink to="/products" class="nav-link fw-bold fs-2">產品</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink to="/coupons" class="nav-link fw-bold fs-2">酷彭</RouterLink>
+            <RouterLink to="/product" class="nav-link fw-bold fs-2">單一產品</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink to="/product" class="nav-link fw-bold fs-2">單一產品</RouterLink>
+            <RouterLink to="/coupons" class="nav-link fw-bold fs-2">酷彭</RouterLink>
           </li>
         </ul>
         <div class="d-flex align-items-center list-unstyled m-0 w-">
-          <a href="#"><img class="text-primary" src="/src/assets/icons/person.svg" alt="user"></a>
-          <a href="#" class="ms-4"><img src="/src/assets/icons/shopping_cart.svg" alt="shopping_cart"></a>
-          <a href="#" class="ms-4"><img src="/src/assets/icons/favorite.svg" alt="favorite"></a>
+          <!-- <a href="#"><img class="text-primary" src="/src/assets/icons/person.svg" alt="user"></a> -->
+          <a href="#" class="ms-4"><img src="/src/assets/icons/event_available.svg" alt="event_available"></a>
+          <!-- <a href="#" class="ms-4"><img src="/src/assets/icons/favorite.svg" alt="favorite"></a> -->
         </div>
       </div>
     </div>
