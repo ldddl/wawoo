@@ -12,17 +12,31 @@
     <div class="d-flex flex-column flex-md-row">
       <div class="left-content mb-4">
         <ul class="list-unstyled m-0 text-center">
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">全部商品</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">別墅</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">小木屋</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">透天屋</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">高級住宅</a></li>
-          <li class="border-2 border-bottom p-2 bg-primary"><a href="#" class="btn btn-primary w-100 text-secondary">電梯大樓</a></li>
+          <li class="border-2 border-bottom p-2 bg-primary">
+            <RouterLink :to="`/products`" class="btn btn-primary w-100 text-secondary">全部商品</RouterLink>
+          </li>
+          <li class="border-2 border-bottom p-2 bg-primary" v-for="category in categories" :key="category">
+            <RouterLink :to="`/products?category=${category}`" class="btn btn-primary w-100 text-secondary">{{ category }}</RouterLink>
+          </li>
         </ul>
+
       </div>
       <div class="container right-content p-0">
         <div class="row m-0 d-flex flex-row">
-          <div class="col-md-6 col-lg-4 mb-2">
+          <div class="col-md-6 col-lg-4 mb-2" v-for="product in products" :key="product.id">
+            <div class="card w-100 border-2 border-primary shadow">
+              <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-images-style img-fluid border-bottom border-2 border-primary">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold d-flex align-items-center">{{ product.title }} <div class="badge bg-secondary text-dark ms-2">{{ category }}</div></h5>
+                <p class="card-text card-text-style mb-2">{{ product.description }}</p>
+                <div class="d-flex justify-content-between">
+                  <RouterLink :to="`/product/${product.id}`" class="btn btn-secondary p-2 px-4">看更多</RouterLink>
+                  <a href="#" class="btn btn-primary fw-bold p-2 px-4">預約</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-6 col-lg-4 mb-2">
             <div class="card w-100 border-2 border-primary shadow">
               <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-images-style img-fluid border-bottom border-2 border-primary">
               <div class="card-body">
@@ -99,13 +113,47 @@
                 </div>
               </div>
             </div>
-          </div>
-
+          </div> -->
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+const { VITE_URL, VITE_PATH } = import.meta.env
+
+export default {
+  data() {
+    return {
+      products: [],
+      categories: ['別墅', '維多利亞式建築', '小木屋', '社區小宅', '平房', 'twer', 'twertwer']
+    }
+  },
+  watch: {
+    '$route.query': {
+      handler () {
+        this.getProducts()
+      },
+      deep: true
+    }
+  },
+  methods: {
+    getProducts () {
+      const { category = '' } = this.$route.query
+      axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/products?category=${category}`)
+      .then((res) => {
+        console.log(res.data.products)
+        this.products = res.data.products   
+      })
+    }
+  },
+  mounted() {
+    this.getProducts()
+  }
+}
+</script>
 
 <style lang="scss">
 .card-images-style {
