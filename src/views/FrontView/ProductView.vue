@@ -1,31 +1,3 @@
-<script>
-  import { Toast } from 'bootstrap';
-
-  export default {
-    data() {
-      return {
-        liveToast:null,
-      }
-    },
-    mounted() {
-      // 在 mounted 中取得 liveToast 元素
-      this.liveToast = this.$refs.liveToast;
-    },
-    methods: {
-      showToast() {
-        console.log(this.liveToast);
-        if(this.liveToast){
-          const toast = new Toast(this.liveToast);
-          console.log('show');          
-          toast.show();
-        }else{
-          console.log('null');
-        }
-      }
-    }
-  }
-</script>
-
 <template>
   <div class="container">
     <div id="carouselExampleDark" class="product-img carousel carousel-dark slide mb-4" data-bs-ride="carousel">
@@ -202,12 +174,11 @@
 
   <!-- 預約成功 - Toast -->
    <div class="container m-4">
-
       <!-- Toast 元素 -->
       <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div ref="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="me-auto text-primary fw-bold fs-4">預約成功</strong>
+          <div class="toast-header bg-primary">
+            <strong class="me-auto text-white fw-bold fs-4">預約成功</strong>
             <!-- <small class="text-muted">Just now</small> -->
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
@@ -218,9 +189,35 @@
         </div>
       </div>
    </div>
-
-
 </template>
+
+<script>
+  import { Toast } from 'bootstrap';
+
+  export default {
+    data() {
+      return {
+        liveToast:null,
+      }
+    },
+    mounted() {
+      // 在 mounted 中取得 liveToast 元素
+      this.liveToast = this.$refs.liveToast;
+    },
+    methods: {
+      showToast() {
+        console.log(this.liveToast);
+        if(this.liveToast){
+          const toast = new Toast(this.liveToast);
+          console.log('show');          
+          toast.show();
+        }else{
+          console.log('null');
+        }
+      }
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
 /* 改變箭頭顏色為白色 */
