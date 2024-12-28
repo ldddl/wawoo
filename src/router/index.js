@@ -33,6 +33,11 @@ const router = createRouter({
           component: () => import('../views/FrontView/ProductView.vue')
         }
       ]
+    },
+    {
+      path: '/login',
+      name: '登入',
+      component: () => import('../views/DashboardView/LoginView.vue')
     }
   ]
 })

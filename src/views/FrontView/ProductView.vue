@@ -165,7 +165,6 @@
           </div>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary p-2 rounded fs-3" data-bs-dismiss="modal">取消</button> -->
           <button type="button" class="btn btn-primary p-2 rounded fs-3" @click="showToast"  data-bs-dismiss="modal">預約</button>
         </div>
       </div>
@@ -179,12 +178,11 @@
         <div ref="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header bg-primary">
             <strong class="me-auto text-white fw-bold fs-4">預約成功</strong>
-            <!-- <small class="text-muted">Just now</small> -->
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
           <div class="toast-body">
-            <p class="fs-5">感謝您的預約</p>
-            <p class="fs-5">您的聯絡時間已經成功安排！</p>
+            <p class="fs-5 fw-bold">感謝您的預約</p>
+            <p class="fs-5 fw-bold">您的聯絡時間已經成功安排！</p>
           </div>
         </div>
       </div>
@@ -192,17 +190,15 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import { Toast } from 'bootstrap';
+  const { VITE_URL, VITE_PATH } = import.meta.env
 
   export default {
     data() {
       return {
         liveToast:null,
       }
-    },
-    mounted() {
-      // 在 mounted 中取得 liveToast 元素
-      this.liveToast = this.$refs.liveToast;
     },
     methods: {
       showToast() {
@@ -214,7 +210,23 @@
         }else{
           console.log('null');
         }
-      }
+      },
+      getProduct() {
+      console.log('getProduct');
+      
+      const { id } = this.$route.params
+      axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/product/${id}`)
+        .then(res => {
+          this.product = res.data.product
+          console.log(this.product);
+          
+        })
+      },
+    },
+    mounted() {
+      // 在 mounted 中取得 liveToast 元素
+      this.liveToast = this.$refs.liveToast;
+      this.getProduct()
     }
   }
 </script>

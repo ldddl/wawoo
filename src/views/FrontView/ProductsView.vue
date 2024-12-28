@@ -1,13 +1,4 @@
 <template>
-  <div class="container bg-secondary py-2 my-2 mb-4">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb m-0">
-        <li class="breadcrumb-item fw-bold"><RouterLink to="/">首頁</RouterLink></li>
-        <li class="breadcrumb-item fw-bold">產品列表</li>
-        <li class="breadcrumb-item fw-bold active" aria-current="page">全部商品</li>
-      </ol>
-    </nav>
-  </div>
   <div class="container p-0 mb-4">
     <div class="d-flex flex-column flex-md-row">
       <div class="left-content mb-4">
@@ -19,7 +10,6 @@
             <RouterLink :to="`/products?category=${category}`" class="btn btn-primary w-100 text-secondary">{{ category }}</RouterLink>
           </li>
         </ul>
-
       </div>
       <div class="container right-content p-0">
         <div class="row m-0 d-flex flex-row">
@@ -27,11 +17,11 @@
             <div class="card w-100 border-2 border-primary shadow">
               <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-images-style img-fluid border-bottom border-2 border-primary">
               <div class="card-body">
-                <h5 class="card-title text-primary fw-bold d-flex align-items-center">{{ product.title }} <div class="badge bg-secondary text-dark ms-2">{{ category }}</div></h5>
+                <h5 class="card-title text-primary fw-bold d-flex align-items-center">{{ product.title }} <div class="badge bg-secondary text-dark ms-2">{{ product.category }}</div></h5>
                 <p class="card-text card-text-style mb-2">{{ product.description }}</p>
                 <div class="d-flex justify-content-between">
-                  <RouterLink :to="`/product/${product.id}`" class="btn btn-secondary p-2 px-4">看更多</RouterLink>
-                  <a href="#" class="btn btn-primary fw-bold p-2 px-4">預約</a>
+                  <button type="button" class="btn btn-secondary text-primary fw-bold p-2 px-4" @click.once="addFavorite(product.id)">加入最愛</button>
+                  <RouterLink :to="`/product/${product.id}`" class="btn btn-primary fw-bold p-2 px-4">詳細資訊</RouterLink>
                 </div>
               </div>
             </div>
@@ -128,6 +118,7 @@ export default {
   data() {
     return {
       products: [],
+      addFavorite_productId: [],
       categories: ['別墅', '維多利亞式建築', '小木屋', '社區小宅', '平房', 'twer', 'twertwer']
     }
   },
@@ -147,6 +138,11 @@ export default {
         console.log(res.data.products)
         this.products = res.data.products   
       })
+    },
+    addFavorite (productId) {
+      console.log(productId)
+      this.addFavorite_productId.push(productId)
+      console.log(this.addFavorite_productId)
     }
   },
   mounted() {

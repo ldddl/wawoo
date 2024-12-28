@@ -1,26 +1,24 @@
 <template>
   <div class="container">
-    <div class="row text-center pin-top" :class="{ 'active': selectedArea === 'north' }">
+    <h2 class="text-primary fw-bold mb-2">地區找房</h2>
+    <div class="row text-center " :class="{ 'active': selectedArea === 'north' }">
       <a class="
       city-style-border
       btn btn-primary button-font-hover p-2 
       col-6 col-md-3 
       d-flex justify-content-center align-items-center 
       fw-bold fs-4"
-      data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('north')">
         <div class="p-2">
           <p>北部</p>
         </div>
       </a>
       <a class="
-      city-style-border 
-      pin-top 
+      city-style-border
       btn btn-primary button-font-hover p-2 
       col-6 col-md-3 
       d-flex justify-content-center align-items-center 
       fw-bold fs-4"
-      data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('middle')">
         <div class="p-2">
           <p>中部</p>
@@ -28,12 +26,10 @@
       </a>
       <a class="
       city-style-border
-      pin-top 
       btn btn-primary button-font-hover p-2 
       col-6 col-md-3 
       d-flex justify-content-center align-items-center 
       fw-bold fs-4"
-      data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('south')">
         <div class="p-2">
           <p>南部</p>
@@ -41,12 +37,10 @@
       </a>
       <a class="
       city-style-border
-      pin-top 
       btn btn-primary button-font-hover 
       p-2 col-6 col-md-3 
       d-flex justify-content-center align-items-center 
       fw-bold fs-4"
-      data-bs-toggle="collapse" href="#foldCity" role="button" aria-expanded="true" aria-controls="foldCity"
       @click="findCity('east')">
         <div class="p-2">
           <p>東部</p>
@@ -55,7 +49,7 @@
     </div>
   </div>
   <div class="container mb-4 p-0">
-    <div class="collapse border border-2 border-primary" id="foldCity" :class="{ show: !isCollapsed }">
+    <div class="border border-2 border-primary" id="foldCity">
       <div class="card card-body border-0 rounded-0 pb-0">
         <div class="row text-center">
           <div class="col-3 mb-2 text-primary border-end border-bottom border-2 shadow-sm p-0" v-for="item in cityObj" :key="item">
@@ -82,17 +76,12 @@
       }
     },
     methods: {
-      findCity(area) {
-        console.clear();
+      findCity(area = 'north') {
         this.cityObj = [...this.city[area]]
-
-        this.$nextTick(() => {
-        const buttonElement = document.querySelector('pin-top');
-        if (buttonElement) {
-          buttonElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
       }
+    },
+    mounted() {
+      this.findCity()
     }
   }
 </script>

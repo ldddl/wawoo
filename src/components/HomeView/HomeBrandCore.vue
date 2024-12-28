@@ -33,13 +33,6 @@
   </div>
 </template>
 <style lang="scss" scoped>
-// .brand-core-img {
-//   width: 100%;
-//   height: 200px;
-//   @include md {
-//     height: 100%;
-//   }
-// }
 .brand-core-bg {
   height: 100%;
   background-color: #f0f0f0;

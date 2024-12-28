@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import navBar from '../components/navBar.vue'
-import homeFooter from '../components/homeFooter.vue'
+import navBar from '../components/NavBar.vue'
+import homeFooter from '../components/FooterView.vue'
 export default {
   components: {
     navBar,
