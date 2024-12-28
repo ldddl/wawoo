@@ -23,6 +23,9 @@
 </script>
 
 <template>
+  <div class="container">
+    <h2 class="text-primary fw-bold mb-2">最新上架</h2>
+  </div>
   <div class="container mb-4 p-0">
     <swiper
       :slidesPerView="3"

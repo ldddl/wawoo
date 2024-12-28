@@ -1,12 +1,4 @@
 <template>
-  <div class="container bg-secondary py-2 my-2 mb-4">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb m-0">
-        <li class="breadcrumb-item fw-bold"><RouterLink to="/">首頁</RouterLink></li>
-        <li class="breadcrumb-item fw-bold">庫彭</li>
-      </ol>
-    </nav>
-  </div>
   <div class="container p-0 d-flex flex-column align-items-center justify-content-center">
     <h2 class="mb-4 text-primary fw-bold">請刮開灰色區塊</h2>
     <div class="scratch-card-container mb-4">
@@ -24,7 +16,7 @@
       class="text-primary fw-bold border border-2 border-primary
       d-flex flex-column align-items-center justify-content-center">
         <p>恭喜您獲得 神秘小禮物乙份</p>
-        <img src="../assets/icons/gifts.svg" alt="gifts" class="gift-style">
+        <img src="/src/assets/icons/gifts.svg" alt="gifts" class="gift-style">
       </div>
     </div>
   </div>
@@ -86,7 +78,7 @@ const checkScratchPercentage = () => {
   }
 
   const scratchPercentage = scratchedPixels / (pixels.length / 4);
-  return scratchPercentage > 0.6; // 超過 60% 刮除
+  return scratchPercentage > 0.5; // 超過 50% 刮除
 };
 
 onMounted(() => {
