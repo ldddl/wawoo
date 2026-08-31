@@ -19,6 +19,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
+        @import "@/assets/global/tokens.scss";
         @import "@/assets/global/mixins.scss";
         @import "@/assets/global/utility.scss";
         `

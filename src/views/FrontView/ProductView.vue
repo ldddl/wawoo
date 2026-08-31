@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div id="carouselExampleDark" class="product-img carousel carousel-dark slide mb-4" data-bs-ride="carousel">
+  <div class="container py-4 py-md-5">
+    <div id="carouselExampleDark" class="product-img carousel carousel-dark slide mb-5" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -50,7 +50,7 @@
       </button>
     </div>
     <div class="mb-4">
-      <h2 class="fw-bold mb-2 border-start ps-3 border-5 border-primary">基本資訊</h2>
+      <h2 class="section-title fw-bold mb-3">基本資訊</h2>
       <div class="d-flex align-items-center flex-wrap mb-2">
         <h5 class="me-2 fs-4">建案名稱 :</h5>
         <p class="fs-4">水文居住宅</p>
@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="mb-4">
-      <h2 class="fw-bold mb-2 border-start ps-3 border-5 border-primary">地點與周邊環境</h2>
+      <h2 class="section-title fw-bold mb-3">地點與周邊環境</h2>
       <div class="d-flex align-items-center flex-wrap mb-2">
         <h5 class="me-2 fs-4">地址 :</h5>
         <p class="fs-4">台北市中山區中山北路二段36號</p>
@@ -77,20 +77,20 @@
       <div class="d-flex align-items-center flex-wrap mb-2">
         <h5 class="me-2 mb-2 fs-4">周邊環境 :</h5>
         <div class="d-flex flex-wrap">
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">車站</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">捷運</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">餐廳</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">超商</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">公園</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">國小</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">國中</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">高中</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">大學</p>
+          <p class="chip me-2 mb-2">車站</p>
+          <p class="chip me-2 mb-2">捷運</p>
+          <p class="chip me-2 mb-2">餐廳</p>
+          <p class="chip me-2 mb-2">超商</p>
+          <p class="chip me-2 mb-2">公園</p>
+          <p class="chip me-2 mb-2">國小</p>
+          <p class="chip me-2 mb-2">國中</p>
+          <p class="chip me-2 mb-2">高中</p>
+          <p class="chip me-2 mb-2">大學</p>
         </div>
       </div>
     </div>
     <div class="mb-4">
-      <h2 class="fw-bold mb-2 border-start ps-3 border-5 border-primary">建案特色</h2>
+      <h2 class="section-title fw-bold mb-3">建案特色</h2>
       <div class="d-flex align-items-center flex-wrap mb-2">
         <h5 class="me-2 fs-4">戶型 :</h5>
         <p class="fs-4">2房 1廳 1衛</p>
@@ -106,9 +106,9 @@
       <div class="d-flex align-items-center flex-wrap mb-2">
         <h5 class="me-2 mb-2 fs-4">公共設施 :</h5>
         <div class="d-flex flex-wrap">
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">健身房</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">游泳池</p>
-          <p class="fs-4 p-1 me-2 bg-primary text-white border border-1 rounded">瑜伽室</p>
+          <p class="chip me-2 mb-2">健身房</p>
+          <p class="chip me-2 mb-2">游泳池</p>
+          <p class="chip me-2 mb-2">瑜伽室</p>
         </div>
       </div>
       <div class="d-flex align-items-center flex-wrap mb-2">
@@ -121,14 +121,14 @@
       </div>
     </div>
     <div class="mb-4">
-      <h2 class="fw-bold mb-2 border-start ps-3 border-5 border-primary">價格資訊</h2>
+      <h2 class="section-title fw-bold mb-3">價格資訊</h2>
         <div class="d-flex align-items-center flex-wrap mb-2">
           <h5 class="me-2 fs-4">售價 :</h5>
           <p class="fs-4">1800 萬 - 2400 萬</p>
         </div>
       </div>
       <div class="d-flex align-items-center mb-4">
-        <button type="button" class="btn btn-outline-primary fs-2 fw-bold py-3 border border-4 rounded w-100 shadow" data-bs-toggle="modal" data-bs-target="#reserveModal">立即預約</button>
+        <button type="button" class="btn btn-primary fw-bold py-3 w-100" data-bs-toggle="modal" data-bs-target="#reserveModal">立即預約</button>
       </div>
   </div>
 
@@ -143,7 +143,7 @@
         <div class="modal-body">
           <div>
             <label class="me-2 mb-4" for="name">姓名：</label>
-            <input type="text" name="name" id="name">
+            <input type="text" class="form-control" name="name" id="name">
           </div>
           <div>
             <label class="me-2 mb-4" for="male">性別：</label>
@@ -152,11 +152,11 @@
           </div>
           <div>
             <label class="me-2 mb-4" for="call-phone">電話號碼：</label>
-            <input type="tel" name="call-phone" id="call-phone">
+            <input type="tel" class="form-control" name="call-phone" id="call-phone">
           </div>
           <div>
             <label class="me-2 mb-4" for="mail">mail：</label>
-            <input type="mail" name="mail" id="mail">
+            <input type="email" class="form-control" name="mail" id="mail">
           </div>
           <div>
             <label class="me-2 mb-4" for="contact-date">電話聯絡時間：</label>
@@ -165,7 +165,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary p-2 rounded fs-3" @click="showToast"  data-bs-dismiss="modal">預約</button>
+          <button type="button" class="btn btn-primary fw-bold px-4" @click="showToast" data-bs-dismiss="modal">
+            預約
+          </button>
         </div>
       </div>
     </div>
@@ -177,7 +179,7 @@
       <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div ref="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header bg-primary">
-            <strong class="me-auto text-white fw-bold fs-4">預約成功</strong>
+            <strong class="me-auto text-paper fw-bold fs-4">預約成功</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
           <div class="toast-body">
@@ -250,7 +252,7 @@
 }
 .carousel-caption {
   background: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: $paper;
 }
 .product-img {
   height: 200px;
@@ -263,5 +265,12 @@
     height: 400px;
     max-width: 750px;
   }
+}
+.chip {
+  padding: 0.25rem 0.7rem;
+  background: $secondary;
+  color: $ink;
+  letter-spacing: 0.06em;
+  font-size: 1rem;
 }
 </style>

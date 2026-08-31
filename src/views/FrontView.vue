@@ -1,15 +1,17 @@
 <template>
-  <navBar />
-  <homeFooter />
+  <div class="d-flex flex-column min-vh-100">
+    <NavBar />
+    <FooterView />
+  </div>
 </template>
 
 <script>
-import navBar from '../components/NavBar.vue'
-import homeFooter from '../components/FooterView.vue'
+import NavBar from '../components/NavBar.vue'
+import FooterView from '../components/FooterView.vue'
 export default {
   components: {
-    navBar,
-    homeFooter
+    NavBar,
+    FooterView
   }
 }
 </script>

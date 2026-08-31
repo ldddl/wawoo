@@ -1,12 +1,20 @@
 .button-font-hover:hover {
-  color: #fff;
+  color: $paper;
 }
 
 .icon_style {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  opacity: 0.85;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
   @include sm {
-    width: 50px;
-    height: 50px;
+    width: 36px;
+    height: 36px;
   }
 }

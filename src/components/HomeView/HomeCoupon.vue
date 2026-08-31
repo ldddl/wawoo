@@ -1,33 +1,35 @@
 <template>
-  <div class="container mb-4 p-0">
-    <div class="d-flex justify-content-between align-items-center bg-secondary p-4">
-      <div class="d-flex flex-column me-2 me-md-0">
-        <h2 class="coupon-h2 mb-2 fw-bold">Woo ! 限量 Coupon 大放送 !!!</h2>
-        <p>即日起，憑專屬優惠券預約，即可享有精美小禮物乙份！</p>
+  <section class="container mb-5">
+    <div class="coupon-band d-flex justify-content-between align-items-center gap-3 p-4 p-md-5">
+      <div>
+        <p class="coupon-kicker mb-2">LIMITED OFFER</p>
+        <h2 class="coupon-h2 mb-2 fw-bold">Woo！限量 Coupon 大放送</h2>
+        <p class="mb-0 opacity-75">即日起憑專屬優惠券預約，即可享有精美小禮物乙份</p>
       </div>
-      <RouterLink to="/coupons" class="
-      button-font-hover 
-      btn btn-primary 
-      fw-bolder fs-4 
-      d-flex justify-content-center align-items-center
-      flex-column
-      flex-md-row
-      p-2 rounded">
-        <p class="coupon-font">立即</p>
-        <p class="coupon-font">領取</p>
+      <RouterLink to="/coupons" class="btn btn-primary fw-bold px-4 py-3 text-nowrap">
+        立即領取
       </RouterLink>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-  .coupon-font {
-    white-space: nowrap;
+.coupon-band {
+  background: $secondary;
+  color: $ink;
+}
+
+.coupon-kicker {
+  letter-spacing: 0.28em;
+  font-size: 0.75rem;
+  color: $primary;
+}
+
+.coupon-h2 {
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  @include md {
+    font-size: 1.75rem;
   }
-  .coupon-h2 {
-    font-size: 1rem;
-    @include md {
-      font-size: 2rem;
-    }
-  }
+}
 </style>
