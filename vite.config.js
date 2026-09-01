@@ -9,6 +9,9 @@ export default defineConfig({
   output: {
     publicPath: '/wawoo/'
   },
+  build: {
+    assetsInlineLimit: 0
+  },
   plugins: [vue()],
   resolve: {
     alias: {

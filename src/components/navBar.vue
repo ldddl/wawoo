@@ -168,8 +168,8 @@ export default {
     ...mapActions(useFavoriteStore, ['removeFavorite', 'clearFavorites']),
     maskStyle(src) {
       return {
-        maskImage: `url(${src})`,
-        WebkitMaskImage: `url(${src})`
+        maskImage: `url("${src}")`,
+        WebkitMaskImage: `url("${src}")`
       }
     },
     toggleNavbar() {
