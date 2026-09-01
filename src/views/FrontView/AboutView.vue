@@ -21,7 +21,7 @@
     <section class="story-section" aria-labelledby="story-title">
       <div class="container">
         <div class="row align-items-center g-5">
-          <div class="col-lg-5">
+          <div class="col-lg-5 reveal-item">
             <p class="section-label">品牌起源</p>
             <h2 id="story-title" class="section-heading font-brand mb-4">
               從一片瓦，
@@ -36,13 +36,13 @@
           </div>
           <div class="col-lg-7">
             <div class="story-copy">
-              <p>
+              <p class="reveal-item" style="--reveal-delay: 80ms">
                 「瓦」是屋頂最基礎的構成。一片瓦看似平凡，當它們彼此承接、細心排列，便能為一個家遮風擋雨，守住屋裡的光與溫度。
               </p>
-              <p>
+              <p class="reveal-item" style="--reveal-delay: 160ms">
                 「屋」則承載著人與生活。從早晨醒來的第一杯水，到夜晚亮起的一盞燈，那些反覆發生的小事，慢慢形塑了我們對家的記憶。
               </p>
-              <p class="mb-0">
+              <p class="mb-0 reveal-item" style="--reveal-delay: 240ms">
                 因此，我們以「瓦屋
                 WAWOO」為名，從家的需求出發，挑選兼具品質、實用與美感的生活用品。希望每一次選擇，都不只是添購一件物品，而是在一瓦一物之間，築起更貼近自己的日常。
               </p>
@@ -54,14 +54,14 @@
 
     <section class="values-section" aria-labelledby="values-title">
       <div class="container">
-        <div class="values-heading text-center">
+        <div class="values-heading text-center reveal-item">
           <p class="section-label">核心價值</p>
           <h2 id="values-title" class="section-heading font-brand mb-3">我們想守住的三件事</h2>
           <p class="values-intro mb-0">從挑選商品到交付服務，瓦屋以三項價值回應每一種家的想像。</p>
         </div>
 
         <div class="row g-4">
-          <div class="col-md-4">
+          <div class="col-md-4 reveal-item" style="--reveal-delay: 0ms">
             <section class="value-card">
               <span class="value-card__number" aria-hidden="true">01</span>
               <h3 class="font-brand">溫暖</h3>
@@ -71,7 +71,7 @@
               </p>
             </section>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 reveal-item" style="--reveal-delay: 140ms">
             <section class="value-card">
               <span class="value-card__number" aria-hidden="true">02</span>
               <h3 class="font-brand">穩定</h3>
@@ -81,7 +81,7 @@
               </p>
             </section>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 reveal-item" style="--reveal-delay: 280ms">
             <section class="value-card">
               <span class="value-card__number" aria-hidden="true">03</span>
               <h3 class="font-brand">安心</h3>
@@ -97,7 +97,7 @@
 
     <section class="promise-section" aria-labelledby="promise-title">
       <div class="container">
-        <div class="promise-content text-center">
+        <div class="promise-content text-center reveal-item">
           <p class="section-label">我們的承諾</p>
           <h2 id="promise-title" class="font-brand">為生活選物，也為日常著想</h2>
           <p>
@@ -114,10 +114,65 @@
   </article>
 </template>
 
+<script>
+export default {
+  name: 'AboutView',
+  data() {
+    return {
+      revealObserver: null
+    }
+  },
+  mounted() {
+    const items = this.$el.querySelectorAll('.reveal-item')
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('is-visible'))
+      return
+    }
+
+    this.revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-visible')
+          this.revealObserver.unobserve(entry.target)
+        })
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    )
+
+    items.forEach((item) => this.revealObserver.observe(item))
+  },
+  beforeUnmount() {
+    this.revealObserver?.disconnect()
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .about {
   color: $ink;
   background-color: $paper;
+}
+
+.reveal-item {
+  opacity: 0;
+  filter: blur(3px);
+  transform: translateY(2rem);
+  transition:
+    opacity 0.7s ease var(--reveal-delay, 0ms),
+    filter 0.7s ease var(--reveal-delay, 0ms),
+    transform 0.7s ease var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
 }
 
 .about-hero {
@@ -528,6 +583,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
   .value-card,
   .promise-button {
     transition: none;

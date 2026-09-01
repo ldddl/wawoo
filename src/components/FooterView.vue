@@ -15,9 +15,9 @@
           <div class="footer-title-row">
             <h2 class="footer-heading mb-0">聯絡我們</h2>
           </div>
-          <p class="mb-2">電話：12345678910</p>
+          <p class="mb-2">電話：0912345678</p>
           <p class="mb-2">信箱：wawoo@gmail.com</p>
-          <p class="mb-0">地址：地球上的某一個角落</p>
+          <p class="mb-0">地址：地球上的一個瓦屋</p>
         </div>
         <div class="col-md-4">
           <div class="footer-title-row">
@@ -39,9 +39,16 @@
           </div>
         </div>
       </div>
-      <hr class="border-paper opacity-25 my-4" />
-      <p class="text-center small mb-1 opacity-75">ⓒ 2026 Wawoo by Wa</p>
-      <p class="text-center small mb-0 opacity-75">本網站僅作為求職作品集使用，不供商業用途</p>
+      <hr class="footer-divider my-4" />
+      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
+        <div class="text-center text-sm-start">
+          <p class="small mb-1 opacity-75">ⓒ 2026 Wawoo by Wa</p>
+          <p class="small mb-0 opacity-75">本網站僅作為求職作品集使用，不供商業用途</p>
+        </div>
+        <RouterLink to="/login" class="btn btn-outline-light btn-sm fw-bold px-3">
+          後台登入
+        </RouterLink>
+      </div>
     </div>
   </footer>
 </template>
@@ -110,6 +117,39 @@ export default {
       width: 44px;
       height: 44px;
     }
+  }
+}
+
+.footer-divider {
+  height: 1px;
+  margin-inline: 0;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    rgba($paper, 0.15) 0%,
+    rgba($paper, 0.15) 35%,
+    rgba($paper, 0.95) 50%,
+    rgba($paper, 0.15) 65%,
+    rgba($paper, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  animation: divider-flow 2.8s linear infinite;
+}
+
+@keyframes divider-flow {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-divider {
+    animation: none;
+    opacity: 0.35;
   }
 }
 </style>

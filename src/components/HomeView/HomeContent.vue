@@ -1,7 +1,15 @@
 <template>
   <section class="home-content">
     <div v-for="room in rooms" :key="room.id" :id="`room-${room.id}`" class="content-row">
-      <div class="content-frame">
+      <div
+        class="content-frame"
+        role="link"
+        tabindex="0"
+        :aria-label="`查看${room.name}商品`"
+        @click="goToCategory(room.name)"
+        @keydown.enter="goToCategory(room.name)"
+        @keydown.space.prevent="goToCategory(room.name)"
+      >
         <div class="content-label">
           <span>{{ room.name }}</span>
         </div>
@@ -123,6 +131,14 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    goToCategory(category) {
+      this.$router.push({
+        name: 'products',
+        query: { category }
+      })
+    }
   }
 }
 </script>
@@ -188,6 +204,12 @@ $wood-dark: #3d2418;
   grid-template-columns: 1fr;
   min-width: 0;
   padding-bottom: 12px;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 3px solid $paper;
+    outline-offset: 3px;
+  }
 
   @include md {
     grid-template-columns: auto 1fr;
