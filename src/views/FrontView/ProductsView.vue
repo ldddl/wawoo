@@ -23,9 +23,9 @@
           </li>
         </ul>
       </aside>
-      <div class="flex-grow-1">
+      <div class="flex-grow-1 d-flex flex-column">
         <div class="row g-3">
-          <div class="col-md-6 col-lg-4" v-for="product in products" :key="product.id">
+          <div class="col-md-6 col-lg-4" v-for="product in pagedProducts" :key="product.id">
             <div
               class="product-card h-100 d-flex flex-column"
               role="button"
@@ -65,6 +65,50 @@
             </div>
           </div>
         </div>
+        <p v-if="isLoaded && !pagedProducts.length" class="text-center opacity-75 py-5 mb-0">
+          此分類目前沒有商品
+        </p>
+        <nav
+          v-if="filteredProducts.length"
+          class="product-pagination"
+          aria-label="商品分頁"
+        >
+          <ul class="pagination mb-0 justify-content-center flex-wrap">
+            <li class="page-item" :class="{ disabled: currentPage <= 1 }">
+              <button
+                type="button"
+                class="page-link"
+                :disabled="currentPage <= 1"
+                @click="goPage(currentPage - 1)"
+              >
+                上一頁
+              </button>
+            </li>
+            <li
+              v-for="page in totalPages"
+              :key="page"
+              class="page-item"
+              :class="{ active: page === currentPage }"
+            >
+              <button type="button" class="page-link" @click="goPage(page)">
+                {{ page }}
+              </button>
+            </li>
+            <li class="page-item" :class="{ disabled: currentPage >= totalPages }">
+              <button
+                type="button"
+                class="page-link"
+                :disabled="currentPage >= totalPages"
+                @click="goPage(currentPage + 1)"
+              >
+                下一頁
+              </button>
+            </li>
+          </ul>
+          <p class="product-pagination__meta mb-0 mt-2 text-center small opacity-75">
+            共 {{ filteredProducts.length }} 筆，每頁 {{ pageSize }} 筆
+          </p>
+        </nav>
       </div>
     </div>
 
@@ -247,12 +291,15 @@ import { mapActions } from 'pinia'
 import { useCartStore } from '@/stores/cartStore'
 import { useFavoriteStore } from '@/stores/favoriteStore'
 const { VITE_URL, VITE_PATH } = import.meta.env
+const PAGE_SIZE = 6
 
 export default {
   data() {
     return {
       isAddingCart: false,
+      isLoaded: false,
       products: [],
+      pageSize: PAGE_SIZE,
       categories: ['客廳', '房間', '廚房', '衛浴'],
       selectedProduct: null,
       qty: 1,
@@ -269,6 +316,23 @@ export default {
     activeCategory() {
       return this.$route.query.category || ''
     },
+    filteredProducts() {
+      if (!this.activeCategory) return this.products
+      return this.products.filter((item) => item.category === this.activeCategory)
+    },
+    totalPages() {
+      return Math.max(1, Math.ceil(this.filteredProducts.length / this.pageSize))
+    },
+    currentPage() {
+      const page = Number(this.$route.query.page)
+      if (!Number.isInteger(page) || page < 1) return 1
+      if (!this.isLoaded) return page
+      return Math.min(page, this.totalPages)
+    },
+    pagedProducts() {
+      const start = (this.currentPage - 1) * this.pageSize
+      return this.filteredProducts.slice(start, start + this.pageSize)
+    },
     productImages() {
       if (!this.selectedProduct) return []
       const list = [this.selectedProduct.imageUrl, ...(this.selectedProduct.imagesUrl || [])]
@@ -280,21 +344,50 @@ export default {
     }
   },
   watch: {
-    '$route.query': {
-      handler() {
-        this.getProducts()
-      },
-      deep: true
+    '$route.query.page'() {
+      this.clampPage()
+    },
+    totalPages() {
+      this.clampPage()
     }
   },
   methods: {
     ...mapActions(useCartStore, ['getCart']),
     ...mapActions(useFavoriteStore, ['toggleFavorite', 'isFavorite']),
     getProducts() {
-      const { category = '' } = this.$route.query
-      axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/products?category=${category}`).then((res) => {
-        this.products = res.data.products
-      })
+      axios
+        .get(`${VITE_URL}/v2/api/${VITE_PATH}/products/all`)
+        .then((res) => {
+          const raw = res.data.products
+          this.products = Array.isArray(raw) ? raw : Object.values(raw || {})
+          this.isLoaded = true
+          this.clampPage()
+        })
+        .catch(() => {
+          this.products = []
+          this.isLoaded = true
+        })
+    },
+    productsQuery(page) {
+      const query = {}
+      if (this.activeCategory) query.category = this.activeCategory
+      if (page > 1) query.page = String(page)
+      return query
+    },
+    goPage(page) {
+      if (page < 1 || page > this.totalPages || page === this.currentPage) return
+      this.$router.push({ name: 'products', query: this.productsQuery(page) })
+    },
+    clampPage() {
+      if (!this.isLoaded || !this.$route.query.page) return
+      const page = Number(this.$route.query.page)
+      if (!Number.isInteger(page) || page < 1) {
+        this.$router.replace({ name: 'products', query: this.productsQuery(1) })
+        return
+      }
+      if (page > this.totalPages) {
+        this.$router.replace({ name: 'products', query: this.productsQuery(this.totalPages) })
+      }
     },
     openProductModal(product) {
       this.selectedProduct = product
@@ -518,5 +611,25 @@ export default {
 .cart-toast__header {
   background: $primary;
   border-bottom: none;
+}
+
+.product-pagination {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.page-link {
+  color: $ink;
+  border-color: $secondary;
+}
+
+.page-item.active .page-link {
+  background-color: $primary;
+  border-color: $primary;
+  color: $paper;
+}
+
+.page-item.disabled .page-link {
+  color: rgba($ink, 0.4);
 }
 </style>
